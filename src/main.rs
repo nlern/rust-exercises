@@ -2,6 +2,33 @@ use std::io;
 
 fn main() {
     loop {
+        println!("exercises");
+        println!("1. temp. converter");
+        println!("0. Exit");
+
+        let mut option = String::new();
+        io::stdin()
+            .read_line(&mut option)
+            .expect("Failed to read line");
+        
+        match option.trim() {
+            "0" => {
+                println!("Bye!");
+                break;
+            },
+            "1" => {
+                temp_converter()
+            },
+            _ => {
+                println!("Invalid option selected. Please try again.");
+                continue;
+            }
+        }
+    }
+}
+
+fn temp_converter() {
+    loop {
         let mut unit = String::new();
         println!("Enter input unit(C/c=Celsius, F/f=Fahrenheit).");
         io::stdin()
