@@ -1,39 +1,14 @@
-struct Rectangle {
-    width: u32,
-    height: u32,
-}
-
-impl Rectangle {
-    fn can_hold(&self, other: &Rectangle) -> bool {
-        self.width > other.width && self.height > other.height
-    }
-    fn square(size: u32) -> Rectangle {
-        Rectangle {
-            height: size,
-            width: size,
-        }
-    }
+enum IpAddrKind {
+    V4,
+    V6,
 }
 
 fn main() {
-    let rect1 = Rectangle {
-        width: 30,
-        height: 50,
-    };
+    let four = IpAddrKind::V4;
+    let six = IpAddrKind::V6;
 
-    let rect2 = Rectangle {
-        width: 10,
-        height: 40,
-    };
-
-    let rect3 = Rectangle {
-        width: 60,
-        height: 45,
-    };
-
-    let sq1 = Rectangle::square(20);
-
-    println!("Can rect1 hold rect2: {}", rect1.can_hold(&rect2));
-    println!("Can rect1 hold rect3: {}", rect1.can_hold(&rect3));
-    println!("Can rect1 hold sq1: {}", rect1.can_hold(&sq1));
+    route(four);
+    route(six);
 }
+
+fn route(ip_kind: IpAddrKind) {}
