@@ -51,12 +51,16 @@ fn median_mode() {
             mode = Some(*num);
         }
     }
-    let mid = if numbers.len() % 2 == 0 {
-        numbers.len() / 2
+    if numbers.len() == 0 {
+        println!("Median: N/A");
     } else {
-        (numbers.len() - 1) / 2
-    };
-    println!("Median: {}", numbers[mid]);
+        let mid = if numbers.len() % 2 == 0 {
+            numbers.len() / 2
+        } else {
+            (numbers.len() - 1) / 2
+        };
+        println!("Median: {}", numbers[mid]);
+    }
 
     if let Some(val) = mode {
         println!("Mode: {}", val);
