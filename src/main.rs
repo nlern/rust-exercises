@@ -6,6 +6,7 @@ fn main() {
         println!("Rust exercises on collections");
         println!("1. Find median, mode of a list of integers");
         println!("2. Convert a string to pig latin");
+        println!("3. Employee management");
         println!("0. Exit");
 
         let mut option = String::new();
@@ -19,6 +20,7 @@ fn main() {
             }
             "1" => median_mode(),
             "2" => pig_latin(),
+            "3" => employee_management(),
             _ => {
                 println!("Invalid option selected. Please try again.");
                 continue;
@@ -85,10 +87,11 @@ fn pig_latin() {
         .map(|s| s.trim())
         .filter(|s| !s.is_empty())
         .map(|s| {
-            let mut chars = s.chars();
+            let s_lower = s.to_lowercase();
+            let mut chars = s_lower.chars();
             let first_char = chars.next().unwrap();
             let converted;
-            if vowels_set.contains(&first_char){
+            if vowels_set.contains(&first_char) {
                 converted = format!("{}-hay", s);
             } else {
                 let remaining = chars.as_str();
@@ -101,3 +104,5 @@ fn pig_latin() {
     println!("Pig latin string");
     println!("{}", converted);
 }
+
+fn employee_management() {}
