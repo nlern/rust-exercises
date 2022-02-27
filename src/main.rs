@@ -1,10 +1,11 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::io::{self, BufRead};
 
 fn main() {
     loop {
         println!("Rust exercises on collections");
         println!("1. Find median, mode of a list of integers");
+        println!("2. Convert a string to pig latin");
         println!("0. Exit");
 
         let mut option = String::new();
@@ -17,6 +18,7 @@ fn main() {
                 break;
             }
             "1" => median_mode(),
+            "2" => pig_latin(),
             _ => {
                 println!("Invalid option selected. Please try again.");
                 continue;
@@ -47,7 +49,7 @@ fn median_mode() {
         let count = map.entry(num).or_insert(0);
         *count += 1;
         if *count > max_count {
-            max_count= *count;
+            max_count = *count;
             mode = Some(*num);
         }
     }
@@ -67,4 +69,35 @@ fn median_mode() {
     } else {
         println!("Mode: N/A");
     }
+}
+
+fn pig_latin() {
+    let vowels_set = HashSet::from(['a', 'e', 'i', 'o', 'u']);
+    println!("Enter string to convert to pig latin");
+    let reader = io::stdin();
+    let converted = reader
+        .lock()
+        .lines()
+        .next()
+        .unwrap()
+        .unwrap()
+        .split(' ')
+        .map(|s| s.trim())
+        .filter(|s| !s.is_empty())
+        .map(|s| {
+            let mut chars = s.chars();
+            let first_char = chars.next().unwrap();
+            let converted;
+            if vowels_set.contains(&first_char){
+                converted = format!("{}-hay", s);
+            } else {
+                let remaining = chars.as_str();
+                converted = format!("{}-{}ay", remaining, first_char);
+            }
+            converted
+        })
+        .collect::<Vec<String>>()
+        .join(" ");
+    println!("Pig latin string");
+    println!("{}", converted);
 }
