@@ -12,7 +12,7 @@ fn main() {
 
   println!("1 new tweet: {}", tweet.summarize());
 
-  let _article = NewsArticle {
+  let article = NewsArticle {
     headline: String::from("Penuins win the Stanley Cup Championship!"),
     location: String::from("Pittsburgh, PA, USA"),
     author: String::from("Iceburgh"),
@@ -21,4 +21,10 @@ fn main() {
        hockey team in the NHL.",
     ),
   };
+
+  notify(&article);
+}
+
+pub fn notify(item: &impl Summary) {
+  println!("Breaking news! {}", item.summarize());
 }
