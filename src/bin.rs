@@ -24,14 +24,3 @@ fn main() {
 
   notify(&article);
 }
-
-fn returns_summarizable() -> impl Summary {
-  Tweet {
-    username: String::from("horse_books"),
-    content: String::from(
-      "of course, as you probably already know, people",
-    ),
-    reply: false,
-    retweet: false,
-  }
-}
