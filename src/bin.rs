@@ -1,4 +1,3 @@
-use std::fmt::{Display, Debug};
 use aggregator::{Summary, Tweet, NewsArticle, notify};
 
 fn main() {
@@ -25,11 +24,6 @@ fn main() {
 
   notify(&article);
 }
-
-fn some_function<T, U>(t: &T, u: &U) -> i32 
-  where T: Display + Clone,
-        U: Clone + Debug
-{10}
 
 fn returns_summarizable() -> impl Summary {
   Tweet {
