@@ -1,4 +1,5 @@
-use aggregator::{Summary, Tweet, NewsArticle};
+use std::fmt::{Display, Debug};
+use aggregator::{Summary, Tweet, NewsArticle, notify};
 
 fn main() {
   let tweet = Tweet {
@@ -25,6 +26,18 @@ fn main() {
   notify(&article);
 }
 
-pub fn notify(item: &impl Summary) {
-  println!("Breaking news! {}", item.summarize());
+fn some_function<T, U>(t: &T, u: &U) -> i32 
+  where T: Display + Clone,
+        U: Clone + Debug
+{10}
+
+fn returns_summarizable() -> impl Summary {
+  Tweet {
+    username: String::from("horse_books"),
+    content: String::from(
+      "of course, as you probably already know, people",
+    ),
+    reply: false,
+    retweet: false,
+  }
 }
