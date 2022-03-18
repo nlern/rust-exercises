@@ -1,9 +1,9 @@
-fn largest<T: PartialOrd>(list: &[T]) -> &T {
-  let mut largest = &list[0];
+fn largest<T: PartialOrd + Clone>(list: &[T]) -> T {
+  let mut largest = list[0].clone();
 
   for item in list {
-    if *item > *largest {
-      largest = item;
+    if item.clone() > largest {
+      largest = item.clone();
     }
   }
 
